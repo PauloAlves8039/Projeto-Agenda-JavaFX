@@ -7,104 +7,145 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 
-<VBox maxHeight="420.0" maxWidth="600.0" minHeight="420.0" minWidth="600.0" prefHeight="420.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.treinaweb.javafx.agenda.MainController">
-   <children>
-      <Pane prefHeight="50.0" prefWidth="600.0" style="-fx-background-color: #bbb;">
-         <children>
-            <Label layoutX="14.0" layoutY="17.0" text="Minha Agenda">
-               <font>
-                  <Font name="Segoe UI Bold" size="18.0" />
-               </font>
-            </Label>
-         </children>
-      </Pane>
-      <Pane prefHeight="219.0" prefWidth="600.0" style="-fx-background-color: #eeeeee;">
-         <children>
-            <TableView fx:id="tabelaContatos" layoutX="10.0" layoutY="14.0" prefHeight="160.0" prefWidth="580.0">
-              <columns>
-                <TableColumn editable="false" prefWidth="200.0" text="Nome" />
-                <TableColumn editable="false" prefWidth="190.0" text="Idade" />
-                  <TableColumn editable="false" minWidth="0.0" prefWidth="190.0" text="Telefone" />
-              </columns>
-            </TableView>
-            <Button fx:id="botaoInserir" layoutX="10.0" layoutY="183.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" text="Incluir">
-               <font>
-                  <Font name="Segoe UI Bold" size="12.0" />
-               </font>
-            </Button>
-            <Button fx:id="botaoAlterar" layoutX="225.0" layoutY="183.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" text="Alterar">
-               <font>
-                  <Font name="Segoe UI Bold" size="12.0" />
-               </font>
-            </Button>
-            <Button fx:id="botaoExcluir" layoutX="440.0" layoutY="183.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" text="Excluir">
-               <font>
-                  <Font name="Segoe UI Bold" size="12.0" />
-               </font>
-            </Button>
-         </children>
-      </Pane>
-      <TitledPane collapsible="false" prefHeight="154.0" prefWidth="600.0" text="Informações de Contato">
-         <font>
-            <Font name="Segoe UI Bold" size="12.0" />
-         </font>
-         <content>
-            <GridPane>
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="262.0" minWidth="10.0" prefWidth="256.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="227.0" minWidth="10.0" prefWidth="163.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="189.0" minWidth="10.0" prefWidth="159.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <Label text="Nome:">
-                     <font>
-                        <Font name="Segoe UI Bold" size="12.0" />
-                     </font>
-                  </Label>
-                  <Label text="Idade:" GridPane.columnIndex="1">
-                     <font>
-                        <Font name="Segoe UI Bold" size="12.0" />
-                     </font>
-                  </Label>
-                  <Label text="Telefone:" GridPane.columnIndex="2">
-                     <font>
-                        <Font name="Segoe UI Bold" size="12.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="txfNome" GridPane.rowIndex="1">
-                     <GridPane.margin>
-                        <Insets right="10.0" />
-                     </GridPane.margin>
-                  </TextField>
-                  <TextField fx:id="txfIdade" prefHeight="25.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                     <GridPane.margin>
-                        <Insets right="10.0" />
-                     </GridPane.margin>
-                  </TextField>
-                  <TextField fx:id="txfTelefone" prefHeight="25.0" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                     <GridPane.margin>
-                        <Insets right="10.0" />
-                     </GridPane.margin>
-                  </TextField>
-                  <Button fx:id="botaoCancelar" mnemonicParsing="false" prefHeight="25.0" prefWidth="153.0" text="Cancelar" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                     <font>
-                        <Font name="Segoe UI Bold" size="12.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="botaoSalvar" mnemonicParsing="false" prefHeight="25.0" prefWidth="151.0" text="Salvar" GridPane.columnIndex="2" GridPane.rowIndex="2">
-                     <font>
-                        <Font name="Segoe UI Bold" size="12.0" />
-                     </font>
-                  </Button>
-               </children>
-            </GridPane>
-         </content>
-      </TitledPane>
-   </children>
+<VBox maxHeight="420.0" maxWidth="600.0" minHeight="420.0"
+	minWidth="600.0" prefHeight="420.0" prefWidth="600.0"
+	xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="br.com.treinaweb.javafx.agenda.MainController">
+	<children>
+		<Pane prefHeight="50.0" prefWidth="600.0"
+			style="-fx-background-color: #bbb;">
+			<children>
+				<Label layoutX="14.0" layoutY="17.0" text="Minha Agenda">
+					<font>
+						<Font name="Segoe UI Bold" size="18.0" />
+					</font>
+				</Label>
+			</children>
+		</Pane>
+		<Pane prefHeight="219.0" prefWidth="600.0"
+			style="-fx-background-color: #eeeeee;">
+			<children>
+				<TableView fx:id="tabelaContatos" layoutX="10.0"
+					layoutY="14.0" prefHeight="160.0" prefWidth="580.0">
+					<columns>
+						<TableColumn editable="false" prefWidth="200.0"
+							text="Nome">
+							<cellValueFactory>
+								<PropertyValueFactory property="nome" />
+							</cellValueFactory>
+						</TableColumn>
+						<TableColumn editable="false" prefWidth="190.0"
+							text="Idade">
+							<cellValueFactory>
+								<PropertyValueFactory property="idade" />
+							</cellValueFactory>
+						</TableColumn>
+						<TableColumn editable="false" minWidth="0.0"
+							prefWidth="190.0" text="Telefone">
+							<cellValueFactory>
+								<PropertyValueFactory property="telefone" />
+							</cellValueFactory>
+						</TableColumn>
+					</columns>
+				</TableView>
+				<Button fx:id="botaoInserir" layoutX="10.0" layoutY="183.0"
+					mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0"
+					text="Incluir">
+					<font>
+						<Font name="Segoe UI Bold" size="12.0" />
+					</font>
+				</Button>
+				<Button fx:id="botaoAlterar" layoutX="225.0" layoutY="183.0"
+					mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0"
+					text="Alterar">
+					<font>
+						<Font name="Segoe UI Bold" size="12.0" />
+					</font>
+				</Button>
+				<Button fx:id="botaoExcluir" layoutX="440.0" layoutY="183.0"
+					mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0"
+					text="Excluir">
+					<font>
+						<Font name="Segoe UI Bold" size="12.0" />
+					</font>
+				</Button>
+			</children>
+		</Pane>
+		<TitledPane collapsible="false" prefHeight="154.0"
+			prefWidth="600.0" text="Informações de Contato">
+			<font>
+				<Font name="Segoe UI Bold" size="12.0" />
+			</font>
+			<content>
+				<GridPane>
+					<columnConstraints>
+						<ColumnConstraints hgrow="SOMETIMES"
+							maxWidth="262.0" minWidth="10.0" prefWidth="256.0" />
+						<ColumnConstraints hgrow="SOMETIMES"
+							maxWidth="227.0" minWidth="10.0" prefWidth="163.0" />
+						<ColumnConstraints hgrow="SOMETIMES"
+							maxWidth="189.0" minWidth="10.0" prefWidth="159.0" />
+					</columnConstraints>
+					<rowConstraints>
+						<RowConstraints minHeight="10.0" prefHeight="30.0"
+							vgrow="SOMETIMES" />
+						<RowConstraints minHeight="10.0" prefHeight="30.0"
+							vgrow="SOMETIMES" />
+						<RowConstraints minHeight="10.0" prefHeight="30.0"
+							vgrow="SOMETIMES" />
+					</rowConstraints>
+					<children>
+						<Label text="Nome:">
+							<font>
+								<Font name="Segoe UI Bold" size="12.0" />
+							</font>
+						</Label>
+						<Label text="Idade:" GridPane.columnIndex="1">
+							<font>
+								<Font name="Segoe UI Bold" size="12.0" />
+							</font>
+						</Label>
+						<Label text="Telefone:" GridPane.columnIndex="2">
+							<font>
+								<Font name="Segoe UI Bold" size="12.0" />
+							</font>
+						</Label>
+						<TextField fx:id="txfNome" GridPane.rowIndex="1">
+							<GridPane.margin>
+								<Insets right="10.0" />
+							</GridPane.margin>
+						</TextField>
+						<TextField fx:id="txfIdade" prefHeight="25.0"
+							prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+							<GridPane.margin>
+								<Insets right="10.0" />
+							</GridPane.margin>
+						</TextField>
+						<TextField fx:id="txfTelefone" prefHeight="25.0"
+							prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+							<GridPane.margin>
+								<Insets right="10.0" />
+							</GridPane.margin>
+						</TextField>
+						<Button fx:id="botaoCancelar" mnemonicParsing="false"
+							prefHeight="25.0" prefWidth="153.0" text="Cancelar"
+							GridPane.columnIndex="1" GridPane.rowIndex="2">
+							<font>
+								<Font name="Segoe UI Bold" size="12.0" />
+							</font>
+						</Button>
+						<Button fx:id="botaoSalvar" mnemonicParsing="false"
+							prefHeight="25.0" prefWidth="151.0" text="Salvar"
+							GridPane.columnIndex="2" GridPane.rowIndex="2">
+							<font>
+								<Font name="Segoe UI Bold" size="12.0" />
+							</font>
+						</Button>
+					</children>
+				</GridPane>
+			</content>
+		</TitledPane>
+	</children>
 </VBox>
