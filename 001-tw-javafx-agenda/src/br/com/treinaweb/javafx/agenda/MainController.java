@@ -44,6 +44,9 @@ public class MainController implements Initializable {
 	@FXML
 	private Button botaoCancelar;
 	
+	private Boolean ehInserir;
+	private Contato contatoSelecionado;
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		this.tabelaContatos.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
@@ -54,10 +57,48 @@ public class MainController implements Initializable {
 				txfNome.setText(contatoNovo.getNome());
 				txfIdade.setText(String.valueOf(contatoNovo.getIdade()));
 				txfTelefone.setText(contatoNovo.getTelefone());
+				this.contatoSelecionado = contatoNovo;
 			}
 		});
 		
 		carregarTabelaContatos();
+	}
+	
+	public void botaoInserir_Action() {
+		this.ehInserir = true;
+		this.txfNome.setText("");
+		this.txfIdade.setText("");
+		this.txfTelefone.setText("");
+		habilitarEdicaoAgenda(true);
+	}
+	
+	public void botaoAlterar_Action() {
+		habilitarEdicaoAgenda(true);
+		this.ehInserir = false;
+		this.txfNome.setText(this.contatoSelecionado.getNome());
+		this.txfIdade.setText(Integer.toString(this.contatoSelecionado.getIdade()));
+		this.txfTelefone.setText(this.contatoSelecionado.getTelefone());
+	}
+	
+	public void botaoCancelar_Action() {
+		habilitarEdicaoAgenda(false);
+		this.tabelaContatos.getSelectionModel().selectFirst();
+	}
+	
+	public void botaoSalvar_Action() {
+		AgendaRepositorio<Contato> repositorioContato = new ContatoRepositorio();
+		Contato contato = new Contato();
+		contato.setNome(txfNome.getText());
+		contato.setIdade(Integer.parseInt(txfIdade.getText()));
+		contato.setTelefone(txfTelefone.getText());
+		if(this.ehInserir) {
+			repositorioContato.inserir(contato);
+		}else {
+			repositorioContato.atualizar(contato);
+		}
+		habilitarEdicaoAgenda(false);
+		carregarTabelaContatos();
+		this.tabelaContatos.getSelectionModel().selectFirst();
 	}
 	
 	private void carregarTabelaContatos() {
