@@ -47,6 +47,16 @@ public class MainController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		this.tabelaContatos.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+		habilitarEdicaoAgenda(false);
+
+		this.tabelaContatos.getSelectionModel().selectedItemProperty().addListener((observador, contatoAntigo, contatoNovo) -> {
+			if(contatoNovo != null) {
+				txfNome.setText(contatoNovo.getNome());
+				txfIdade.setText(String.valueOf(contatoNovo.getIdade()));
+				txfTelefone.setText(contatoNovo.getTelefone());
+			}
+		});
+		
 		carregarTabelaContatos();
 	}
 	
@@ -62,6 +72,18 @@ public class MainController implements Initializable {
 		}
 		ObservableList<Contato> contatosObservableList = FXCollections.observableArrayList(contatos);
 		this.tabelaContatos.getItems().setAll(contatosObservableList);
+	}
+	
+	private void habilitarEdicaoAgenda(Boolean edicaoEstaHabilitada) {
+		this.txfNome.setDisable(!edicaoEstaHabilitada);
+		this.txfIdade.setDisable(!edicaoEstaHabilitada);
+		this.txfTelefone.setDisable(!edicaoEstaHabilitada);
+		this.botaoSalvar.setDisable(!edicaoEstaHabilitada);
+		this.botaoCancelar.setDisable(!edicaoEstaHabilitada);
+		this.botaoInserir.setDisable(edicaoEstaHabilitada);
+		this.botaoAlterar.setDisable(edicaoEstaHabilitada);
+		this.botaoExcluir.setDisable(edicaoEstaHabilitada);
+		this.tabelaContatos.setDisable(edicaoEstaHabilitada);
 	}
 	
 }
