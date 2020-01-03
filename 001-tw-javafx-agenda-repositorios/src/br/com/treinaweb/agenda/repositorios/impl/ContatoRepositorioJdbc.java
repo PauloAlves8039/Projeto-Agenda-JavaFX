@@ -25,7 +25,7 @@ public class ContatoRepositorioJdbc implements AgendaRepositorio<Contato> {
 		Connection conexao = null;
 		List<Contato> contatos = new ArrayList<Contato>();
 		try {
-			conexao = DriverManager.getConnection("jdbc:mysql://localhost:3306/tw_jdbc", "root", "root");
+			conexao = DriverManager.getConnection("jdbc:mysql://localhost:3306/tw_jdbc?useTimezone=true&serverTimezone=UTC", "root", "root");
 			Statement comando = conexao.createStatement();
 			ResultSet rs = comando.executeQuery("SELECT * FROM contatos");
 			while (rs.next()) {
