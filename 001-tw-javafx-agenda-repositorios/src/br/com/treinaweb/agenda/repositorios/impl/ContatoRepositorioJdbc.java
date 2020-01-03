@@ -24,33 +24,40 @@ public class ContatoRepositorioJdbc implements AgendaRepositorio<Contato> {
 	public List<Contato> selecionar() throws SQLException {
 		Connection conexao = null;
 		List<Contato> contatos = new ArrayList<Contato>();
-		conexao = DriverManager.getConnection("jdbc:mysql://localhost:3306/tw_jdbc", "root", "root");
-		Statement comando = conexao.createStatement();
-		ResultSet rs = comando.executeQuery("SELECT * FROM contatos");
-		while(rs.next()) {
-			Contato contato = new Contato();
-			contato.setId(rs.getInt("id"));
-			contato.setNome(rs.getString("nome"));
-			contato.setIdade(rs.getInt("idade"));
-			contato.setTelefone(rs.getString("telefone"));
-			contatos.add(contato);
+		try {
+			conexao = DriverManager.getConnection("jdbc:mysql://localhost:3306/tw_jdbc", "root", "root");
+			Statement comando = conexao.createStatement();
+			ResultSet rs = comando.executeQuery("SELECT * FROM contatos");
+			while (rs.next()) {
+				Contato contato = new Contato();
+				contato.setId(rs.getInt("id"));
+				contato.setNome(rs.getString("nome"));
+				contato.setIdade(rs.getInt("idade"));
+				contato.setTelefone(rs.getString("telefone"));
+				contatos.add(contato);
+			}
+		} finally {
+			if(conexao != null) {
+				conexao.close();
+			}
 		}
+
 		return contatos;
 	}
 
 	@Override
 	public void inserir(Contato entidade) {
-				
+
 	}
 
 	@Override
 	public void atualizar(Contato entidade) {
-				
+
 	}
 
 	@Override
 	public void excluir(Contato entidade) {
-				
+
 	}
 
 }
