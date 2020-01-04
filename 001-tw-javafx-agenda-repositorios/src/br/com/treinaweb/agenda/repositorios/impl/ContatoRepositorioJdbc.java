@@ -58,8 +58,21 @@ public class ContatoRepositorioJdbc implements AgendaRepositorio<Contato> {
 	}
 
 	@Override
-	public void atualizar(Contato entidade) {
-
+	public void atualizar(Contato entidade) throws IOException, SQLException {
+		Connection conexao = null;
+		try {
+			conexao = FabricaConexaoJdbc.criarConexao();
+			PreparedStatement comando = conexao.prepareStatement("UPDATE contatos " + "  SET nome = ?, " + "  idade = ?, " + "  telefone = ? " + "  WHERE id = ?");
+			comando.setString(1, entidade.getNome());
+			comando.setInt(2, entidade.getIdade());
+			comando.setString(3, entidade.getTelefone());
+			comando.setInt(4, entidade.getId());
+			comando.execute();
+		}finally {
+			if(conexao != null) {
+				conexao.close();
+			}
+		}
 	}
 
 	@Override

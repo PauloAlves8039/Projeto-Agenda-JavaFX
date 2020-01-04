@@ -115,6 +115,7 @@ public class MainController implements Initializable {
 			if (this.ehInserir) {
 				repositorioContato.inserir(contato);
 			} else {
+				contato.setId(contatoSelecionado.getId());
 				repositorioContato.atualizar(contato);
 			}
 			habilitarEdicaoAgenda(false);
