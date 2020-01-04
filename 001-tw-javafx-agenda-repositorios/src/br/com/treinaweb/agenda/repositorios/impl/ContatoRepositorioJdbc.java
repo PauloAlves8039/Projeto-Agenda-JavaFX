@@ -24,10 +24,8 @@ public class ContatoRepositorioJdbc implements AgendaRepositorio<Contato> {
 
 	@Override
 	public List<Contato> selecionar() throws SQLException, IOException {
-		Connection conexao = null;
 		List<Contato> contatos = new ArrayList<Contato>();
-		try {
-			conexao = FabricaConexaoJdbc.criarConexao();
+		try (Connection conexao = FabricaConexaoJdbc.criarConexao()){
 			Statement comando = conexao.createStatement();
 			ResultSet rs = comando.executeQuery("SELECT * FROM contatos");
 			while (rs.next()) {
@@ -38,12 +36,7 @@ public class ContatoRepositorioJdbc implements AgendaRepositorio<Contato> {
 				contato.setTelefone(rs.getString("telefone"));
 				contatos.add(contato);
 			}
-		} finally {
-			if (conexao != null) {
-				conexao.close();
-			}
 		}
-
 		return contatos;
 	}
 
