@@ -76,8 +76,18 @@ public class ContatoRepositorioJdbc implements AgendaRepositorio<Contato> {
 	}
 
 	@Override
-	public void excluir(Contato entidade) {
-
+	public void excluir(Contato entidade) throws IOException, SQLException {
+		Connection conexao = null;
+		try {
+			conexao = FabricaConexaoJdbc.criarConexao();
+			PreparedStatement comando = conexao.prepareStatement("DELETE FROM contatos WHERE id = ? ");
+			comando.setInt(4, entidade.getId());
+			comando.execute();
+		}finally {
+			if(conexao != null) {
+				conexao.close();
+			}
+		}
 	}
 
 }

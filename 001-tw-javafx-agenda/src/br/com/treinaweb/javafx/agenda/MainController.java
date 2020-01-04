@@ -13,7 +13,6 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 import br.com.treinaweb.agenda.entidades.Contato;
-import br.com.treinaweb.agenda.repositorios.impl.ContatoRepositorio;
 import br.com.treinaweb.agenda.repositorios.impl.ContatoRepositorioJdbc;
 import br.com.treinaweb.agenda.repositorios.interfaces.AgendaRepositorio;
 import javafx.collections.FXCollections;
@@ -87,17 +86,26 @@ public class MainController implements Initializable {
 	}
 
 	public void botaoExcluir_Action() {
-		Alert confirmacao = new Alert(AlertType.CONFIRMATION);
-		confirmacao.setTitle("Confirmação");
-		confirmacao.setHeaderText("Confirmação da exclusão do contato");
-		confirmacao.setContentText("Tem certeza que deseja excluir esse contato?");
-		Optional<ButtonType> resultadoConfirmacao = confirmacao.showAndWait();
-		if (resultadoConfirmacao.isPresent() && resultadoConfirmacao.get() == ButtonType.OK) {
-			AgendaRepositorio<Contato> repositorioContato = new ContatoRepositorio();
-			repositorioContato.excluir(this.contatoSelecionado);
-			carregarTabelaContatos();
-			this.tabelaContatos.getSelectionModel().selectFirst();
+		try {
+			Alert confirmacao = new Alert(AlertType.CONFIRMATION);
+			confirmacao.setTitle("Confirmação");
+			confirmacao.setHeaderText("Confirmação da exclusão do contato");
+			confirmacao.setContentText("Tem certeza que deseja excluir esse contato?");
+			Optional<ButtonType> resultadoConfirmacao = confirmacao.showAndWait();
+			if (resultadoConfirmacao.isPresent() && resultadoConfirmacao.get() == ButtonType.OK) {
+				AgendaRepositorio<Contato> repositorioContato = new ContatoRepositorioJdbc();
+				repositorioContato.excluir(this.contatoSelecionado);
+				carregarTabelaContatos();
+				this.tabelaContatos.getSelectionModel().selectFirst();
+			}
+		}catch (Exception e) {
+			Alert mensagem = new Alert(AlertType.ERROR);
+			mensagem.setTitle("Erro!");
+			mensagem.setHeaderText("Erro no banco de dados!");
+			mensagem.setContentText("Houve um erro ao excluir o contato: " + e.getMessage());
+			mensagem.showAndWait();
 		}
+		
 	}
 
 	public void botaoCancelar_Action() {
