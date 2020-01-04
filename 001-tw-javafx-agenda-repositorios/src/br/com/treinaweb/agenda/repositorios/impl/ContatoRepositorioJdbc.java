@@ -9,6 +9,7 @@ package br.com.treinaweb.agenda.repositorios.impl;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -47,8 +48,20 @@ public class ContatoRepositorioJdbc implements AgendaRepositorio<Contato> {
 	}
 
 	@Override
-	public void inserir(Contato entidade) {
-
+	public void inserir(Contato entidade) throws IOException, SQLException {
+		Connection conexao = null;
+		try {
+			conexao = FabricaConexaoJdbc.criarConexao();
+			PreparedStatement comando = conexao.prepareStatement("INSERT INTO contatos (nome, idade, telefone) VALUES (?, ?, ?)");
+			comando.setString(1, entidade.getNome());
+			comando.setInt(2, entidade.getIdade());
+			comando.setString(3, entidade.getTelefone());
+			comando.execute();
+		}finally {
+			if(conexao != null) {
+				conexao.close();
+			}
+		}
 	}
 
 	@Override
