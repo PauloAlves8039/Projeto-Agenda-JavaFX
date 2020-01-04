@@ -81,7 +81,7 @@ public class ContatoRepositorioJdbc implements AgendaRepositorio<Contato> {
 		try {
 			conexao = FabricaConexaoJdbc.criarConexao();
 			PreparedStatement comando = conexao.prepareStatement("DELETE FROM contatos WHERE id = ? ");
-			comando.setInt(4, entidade.getId());
+			comando.setInt(1, entidade.getId());
 			comando.execute();
 		}finally {
 			if(conexao != null) {
