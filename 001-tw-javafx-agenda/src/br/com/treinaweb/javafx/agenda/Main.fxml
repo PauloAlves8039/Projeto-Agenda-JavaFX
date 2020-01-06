@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
 <?import javafx.scene.control.cell.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.image.*?>
@@ -42,17 +43,17 @@
 						</TableColumn>
 					</columns>
 				</TableView>
-				<Button fx:id="botaoInserir" layoutX="10.0" layoutY="183.0" mnemonicParsing="false" onAction="#botaoInserir_Action" prefHeight="25.0" prefWidth="150.0" text="Incluir">
+				<Button fx:id="botaoInserir" layoutX="10.0" layoutY="183.0" mnemonicParsing="false" onAction="#botaoInserir_Action" prefHeight="25.0" prefWidth="150.0" style="-fx-background-color: #00F5FF;" text="Incluir" textFill="WHITE">
 					<font>
 						<Font name="Segoe UI Bold" size="12.0" />
 					</font>
 				</Button>
-				<Button fx:id="botaoAlterar" layoutX="225.0" layoutY="183.0" mnemonicParsing="false" onAction="#botaoAlterar_Action" prefHeight="25.0" prefWidth="150.0" text="Alterar">
+				<Button fx:id="botaoAlterar" layoutX="225.0" layoutY="183.0" mnemonicParsing="false" onAction="#botaoAlterar_Action" prefHeight="25.0" prefWidth="150.0" style="-fx-background-color: #00EE76;" text="Alterar" textFill="WHITE">
 					<font>
 						<Font name="Segoe UI Bold" size="12.0" />
 					</font>
 				</Button>
-				<Button fx:id="botaoExcluir" layoutX="440.0" layoutY="183.0" mnemonicParsing="false" onAction="#botaoExcluir_Action" prefHeight="25.0" prefWidth="150.0" text="Excluir">
+				<Button fx:id="botaoExcluir" layoutX="440.0" layoutY="183.0" mnemonicParsing="false" onAction="#botaoExcluir_Action" prefHeight="25.0" prefWidth="150.0" style="-fx-background-color: #FF0000;" text="Excluir" textFill="WHITE">
 					<font>
 						<Font name="Segoe UI Bold" size="12.0" />
 					</font>
@@ -106,12 +107,12 @@
 								<Insets right="10.0" />
 							</GridPane.margin>
 						</TextField>
-						<Button fx:id="botaoCancelar" mnemonicParsing="false" onAction="#botaoCancelar_Action" prefHeight="25.0" prefWidth="153.0" text="Cancelar" GridPane.columnIndex="1" GridPane.rowIndex="2">
+						<Button fx:id="botaoCancelar" mnemonicParsing="false" onAction="#botaoCancelar_Action" prefHeight="25.0" prefWidth="153.0" style="-fx-background-color: #B5B5B5;" text="Cancelar" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2">
 							<font>
 								<Font name="Segoe UI Bold" size="12.0" />
 							</font>
 						</Button>
-						<Button fx:id="botaoSalvar" mnemonicParsing="false" onAction="#botaoSalvar_Action" prefHeight="25.0" prefWidth="151.0" text="Salvar" GridPane.columnIndex="2" GridPane.rowIndex="2">
+						<Button fx:id="botaoSalvar" mnemonicParsing="false" onAction="#botaoSalvar_Action" prefHeight="25.0" prefWidth="151.0" style="-fx-background-color: #1C86EE;" text="Salvar" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="2">
 							<font>
 								<Font name="Segoe UI Bold" size="12.0" />
 							</font>
